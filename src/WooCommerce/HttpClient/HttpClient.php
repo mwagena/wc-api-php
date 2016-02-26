@@ -239,8 +239,10 @@ class HttpClient
                 continue;
             }
 
-            list($key, $value) = \explode(': ', $line);
-            $headers[$key] = $value;
+            if(strpos($line, ':') !== false) {
+                list($key, $value) = \explode(': ', $line);
+                $headers[$key] = $value;
+            }
         }
 
         return $headers;
